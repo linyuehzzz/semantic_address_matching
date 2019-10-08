@@ -66,22 +66,17 @@ def Levenshtein_unmatched():
             d_unmatched_mean = d_sum/count
             print('Levenshtein distance', d_unmatched_mean)
 
-# Jaccard相似度
+# Jaccard similarity coefficient
 def Jaccard_similarity(s1, s2):
     def add_space(s):
         return ' '.join(list(s))
 
-    # 将字中间加入空格
     s1, s2 = add_space(s1), add_space(s2)
-    # 转化为TF矩阵
     cv = CountVectorizer(tokenizer=lambda s: s.split())
     corpus = [s1, s2]
     vectors = cv.fit_transform(corpus).toarray()
-    # 求交集
     numerator = np.sum(np.min(vectors, axis=0))
-    # 求并集
     denominator = np.sum(np.max(vectors, axis=0))
-    # 计算杰卡德系数
     return 1.0 * numerator / denominator
 
 def Jaccard_total():
@@ -144,7 +139,7 @@ def Jaccard_unmatched():
             s_unmatched_mean = s_sum/count
             print('Jaccard similarity', s_unmatched_mean)
 
-# 长度差
+# Length difference
 def diff_total():
     d_sum = 0
     count = 0
