@@ -1,19 +1,18 @@
 import linecache
 import random
 
-# query 复制
+# Copy queried address records
 def copy_query():
-    # 取txt文件 的若干行到另一个txt
-    with open(r'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-matched-01.txt', 'r', encoding='utf-8') as f1:
-        with open(r'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-unmatched-01.txt', 'w', encoding='utf-8')as f2:
+    with open(r'/data/preprocess_data/Shenzhen_address_data-20180522-matched-01.txt', 'r', encoding='utf-8') as f1:
+        with open(r'/data/preprocess_data/Shenzhen_address_data-20180522-unmatched-01.txt', 'w', encoding='utf-8')as f2:
             while True:
                 line = f1.readline()
                 f2.write(line)
 
-# 随机生成不匹配doc
+# Randomly setect unmatched address records
 def create_unmatched():
-    input_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-matched-02.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-unmatched-02.txt'
+    input_file = '/data/preprocess_data/Shenzhen_address_data-20180522-matched-02.txt'
+    output_file = '/data/preprocess_data/Shenzhen_address_data-20180522-unmatched-02.txt'
 
     with open(input_file, 'r+', encoding='utf-8') as filehandler:
         linecount = len(filehandler.readlines())
@@ -31,11 +30,11 @@ def create_unmatched():
 
             filehandler2.write(line)
 
-# 按列拼接
+# Append lines
 def append_lines():
-    file_1 = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-unmatched-01.txt'
-    file_2 = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-unmatched-02.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/深圳地址数据-20180522-unmatched.txt'
+    file_1 = '/data/preprocess_data/Shenzhen_address_data-20180522-unmatched-01.txt'
+    file_2 = '/data/preprocess_data/Shenzhen_address_data-20180522-unmatched-02.txt'
+    output_file = '/data/preprocess_data/Shenzhen_address_data-20180522-unmatched.txt'
 
     with open(file_1, 'r+', encoding='utf-8') as filehandler:
         linecount = len(filehandler.readlines())
@@ -49,7 +48,7 @@ def append_lines():
 
             filehandler2.write(line_1 + '\t' + line_2 + '\t' + '0\n')
 
-# 分train/dev/test数据集
+# Split dataset into training/development/test
 def split_dataset(num):
 
     a = list(range(1, num+1))
@@ -62,10 +61,10 @@ def split_dataset(num):
     print("dev",len(dev),dev)
     print("test",len(test),test)
 
-    input_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/preprocess_data/Address84474.txt'
-    output_1 = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train.txt'
-    output_2 = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/dev.txt'
-    output_3 = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test.txt'
+    input_file = '/data/preprocess_data/Address84474.txt'
+    output_1 = '/data/dataset/train.txt'
+    output_2 = '/data/dataset/dev.txt'
+    output_3 = '/data/dataset/test.txt'
     with open(input_file, 'r+', encoding='utf-8') as f:
         line = f.readline()
         with open(output_1, 'w', encoding='utf-8') as o1:
@@ -73,7 +72,7 @@ def split_dataset(num):
                 with open(output_3, 'w', encoding='utf-8') as o3:
                     while line:
                         row = line.split()
-                        b = row[0]  # 这是选取需要读取的位数
+                        b = row[0]
                         if int(b) in train:
                                 o1.write(line)
                         if int(b) in dev:

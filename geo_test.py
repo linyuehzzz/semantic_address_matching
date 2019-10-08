@@ -12,9 +12,6 @@ data_pre = geo_data_prepare.Data_Prepare()
 con = config.Config()
 
 class Infer(object):
-    """
-        ues model to predict classification.
-    """
     def __init__(self):
         self.checkpoint_file = tf.train.latest_checkpoint('D:/Lydia/PycharmProjects/Deep learning for geocoding/model/esim')
         graph = tf.Graph()
@@ -70,15 +67,15 @@ class Infer(object):
 
     def infer(self):
         # transfer to vector
-        test_texta_index = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_code_a.txt')
+        test_texta_index = data_pre.readfile('/data/dataset/test_code_a.txt')
         test_texta_index = pad_sequences(test_texta_index, con.maxLen, padding='post')
         print(test_texta_index[0])
         print(len(test_texta_index))
-        test_textb_index = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_code_b.txt')
+        test_textb_index = data_pre.readfile('/data/dataset/test_code_b.txt')
         test_textb_index = pad_sequences(test_textb_index, con.maxLen, padding='post')
         print(test_textb_index[0])
         print(len(test_textb_index))
-        test_tag = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_lable.txt')
+        test_tag = data_pre.readfile('/data/dataset/test_lable.txt')
         test_tag = self.to_categorical(np.asarray(test_tag, dtype='int32'))
         print(test_tag[0])
         print(len(test_tag))
@@ -107,7 +104,7 @@ class Infer(object):
             y_true.extend(y_tag)
 
         f1 = f1_score(np.array(y_true), np.array(y_pred), average='weighted')
-        print('分类报告:\n', metrics.classification_report(np.array(y_true), y_pred))
+        print('Outputs:\n', metrics.classification_report(np.array(y_true), y_pred))
 
 
 infer = Infer()

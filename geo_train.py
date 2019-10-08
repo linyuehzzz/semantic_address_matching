@@ -17,12 +17,7 @@ data_pre = geo_data_prepare.Data_Prepare()
 
 
 class TrainModel(object):
-    '''
-        训练模型
-        保存模型
-    '''
-
-    # 文字转index并保存
+    # Convert text to index
     def pre_processing(self, input, output_texta, output_textb, output_lable, vocab):
         texta_index = []
         textb_index = []
@@ -55,6 +50,7 @@ class TrainModel(object):
             for t in tag_new:
                 o3.write(" ".join(str(i) for i in t)+'\n')
 
+    # Get mini-batch
     def get_batches(self, texta, textb, tag):
         num_batch = int(len(texta) / con.Batch_Size)
         for i in range(num_batch):
@@ -63,8 +59,9 @@ class TrainModel(object):
             t = tag[i * con.Batch_Size:(i + 1) * con.Batch_Size]
             yield a, b, t
 
+    # Get the length of sentence
     def get_length(self, trainX_batch):
-        # sentence length
+        
         lengths = []
         for sample in trainX_batch:
             count = 0
@@ -88,8 +85,7 @@ class TrainModel(object):
 
         return Y
 
-    # 载入预训练词向量
-    # vocab：词表; embed：词的词向量
+    # Load pre-trained word embeddings
     def load_word2vec(self, filename):
         vocab = []
         embed = []
@@ -108,11 +104,11 @@ class TrainModel(object):
         fr.close()
         return vocab, embed
 
-    # 训练模型
+    # Train the ESIM
     def trainModel(self):
-        # 载入预训练词向量
+        # Load pre-trained word embeddings
         with tf.name_scope("Embedding"):
-            vocab, embed = self.load_word2vec("D:/Lydia/PycharmProjects/Deep learning for geocoding/model/w2v/word level/word2vec.bin")
+            vocab, embed = self.load_word2vec("/model/w2v/word level/word2vec.bin")
             print(vocab[0],vocab[1],vocab[2])
             print(embed[0])
             print(embed[1])
@@ -122,46 +118,46 @@ class TrainModel(object):
             print(embedding_dim)
             embedding = np.asarray(embed)
 
-        # 输入训练数据（以单词序号表示）
-        train_texta_index = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train_code_a.txt')
+        # Load training/development datasets
+        train_texta_index = data_pre.readfile('/data/dataset/train_code_a.txt')
         train_texta_index = pad_sequences(train_texta_index, con.maxLen, padding='post')
         print(train_texta_index[0])
         print(len(train_texta_index))
-        train_textb_index = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train_code_b.txt')
+        train_textb_index = data_pre.readfile('/data/dataset/train_code_b.txt')
         train_textb_index = pad_sequences(train_textb_index, con.maxLen, padding='post')
         print(train_textb_index[0])
         print(len(train_textb_index))
-        train_tag = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train_lable.txt')
+        train_tag = data_pre.readfile('/data/dataset/train_lable.txt')
         train_tag = self.to_categorical(np.asarray(train_tag, dtype='int32'))
         print(train_tag[0])
         print(len(train_tag))
-        dev_texta_index = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/dev_code_a.txt')
+        dev_texta_index = data_pre.readfile('/data/dataset/dev_code_a.txt')
         dev_texta_index = pad_sequences(dev_texta_index, con.maxLen, padding='post')
         print(dev_texta_index[0])
         print(len(dev_texta_index))
-        dev_textb_index = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/dev_code_b.txt')
+        dev_textb_index = data_pre.readfile('/data/dataset/dev_code_b.txt')
         dev_textb_index = pad_sequences(dev_textb_index, con.maxLen, padding='post')
         print(dev_textb_index[0])
         print(len(dev_textb_index))
-        dev_tag = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/dev_lable.txt')
+        dev_tag = data_pre.readfile('/data/dataset/dev_lable.txt')
         dev_tag = self.to_categorical(np.asarray(dev_tag, dtype='int32'))
         print(dev_tag[0])
         print(len(dev_tag))
 
-        # shuffle train
+        # Shuffle training dataset
         index_1 = [x for x in range(len(train_texta_index))]
         random.shuffle(index_1)
         train_texta_new = [train_texta_index[x] for x in index_1]
         train_textb_new = [train_textb_index[x] for x in index_1]
         train_tag_new = [train_tag[x] for x in index_1]
-        # shuffle dev
+        # Shuffle development dataset
         index_2 = [x for x in range(len(dev_texta_index))]
         random.shuffle(index_2)
         dev_texta_new = [dev_texta_index[x] for x in index_2]
         dev_textb_new = [dev_textb_index[x] for x in index_2]
         dev_tag_new = [dev_tag[x] for x in index_2]
 
-        # 定义训练用的循环神经网络模型
+        # Define model
         with tf.variable_scope('esim_model', reuse=None):
             # esim model
             model = geo_ESIM.ESIM(True, seq_length=len(train_texta_new[0]),
@@ -173,7 +169,7 @@ class TrainModel(object):
                                   l2_lambda=con.l2_lambda,
                                   learning_rate=con.learning_rate)
 
-        # 训练模型
+        # Train model
         with tf.Session() as sess:
             tf.global_variables_initializer().run()
             saver = tf.train.Saver()
@@ -196,13 +192,10 @@ class TrainModel(object):
                     _, cost, accuracy = sess.run([model.train_op, model.loss, model.accuracy], feed_dict)
                     loss_all.append(cost)
                     accuracy_all.append(accuracy)
-                print("第" + str((time + 1)) + "次迭代的损失为：" + str(np.mean(np.array(loss_all))) + ";accuracy：" +
+                print("Epoch:" + str((time + 1)) + "; training loss:" + str(np.mean(np.array(loss_all))) + "; accuracy: " +
                       str(np.mean(np.array(accuracy_all))))
 
                 def dev_step():
-                    """
-                    Evaluates model on a dev set
-                    """
                     loss_all_dev = []
                     accuracy_all_dev = []
                     predictions_dev = []
@@ -225,8 +218,8 @@ class TrainModel(object):
                     print(len(y_true_dev))
                     y_true_dev = y_true_dev[0:len(loss_all_dev) * con.Batch_Size]
                     f1 = f1_score(np.array(y_true_dev), np.array(predictions_dev), average='weighted')
-                    print('分类报告:\n', metrics.classification_report(np.array(y_true_dev), predictions_dev))
-                    print("验证集：loss {:g}, accuracy {:g}, f1 {:g}\n".format(np.mean(np.array(loss_all_dev)),
+                    print('Outputs:\n', metrics.classification_report(np.array(y_true_dev), predictions_dev))
+                    print("Dev: loss {:g}, accuracy {:g}, f1 {:g}\n".format(np.mean(np.array(loss_all_dev)),
                                                                       np.mean(np.array(accuracy_all_dev)),f1))
                     return f1
 
@@ -235,18 +228,18 @@ class TrainModel(object):
 
                 if f1 > best_f1:
                     best_f1 = f1
-                    saver.save(sess, "D:/Lydia/PycharmProjects/Deep learning for geocoding/model/esim/model.ckpt")
+                    saver.save(sess, "/model/esim/model.ckpt")
                     print("Saved model success\n")
 
 
 train = TrainModel()
 train.trainModel()
 
-# input_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test.txt'
-# output_a = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_code_a.txt'
-# output_b = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_code_b.txt'
-# output_l = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_lable.txt'
+# input_file = '/data/dataset/test.txt'
+# output_a = '/data/dataset/test_code_a.txt'
+# output_b = '/data/dataset/test_code_b.txt'
+# output_l = '/data/dataset/test_lable.txt'
 # vocab, embed = train.load_word2vec(
-#     "D:/Lydia/PycharmProjects/Deep learning for geocoding/model/w2v/word level/word2vec.bin")
+#     "/model/w2v/word level/word2vec.bin")
 # print(vocab[0],vocab[1],vocab[2])
 # train.pre_processing(input_file, output_a, output_b, output_l, vocab)

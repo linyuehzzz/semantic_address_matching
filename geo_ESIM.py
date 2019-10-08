@@ -105,21 +105,20 @@ class ESIM(object):
 
     def biLSTMBlock(self, inputs, num_units, scope, seq_len=None, isreuse=False):
         with tf.variable_scope(scope, reuse=isreuse):
-            # 定义Cell,单层LSTM（前向&后向）
-            # num_units：输出向量的维度
+            # LSTM (F & B)
+            # num_units: output dimension
             cell_fw = tf.nn.rnn_cell.BasicLSTMCell(num_units)
             fw_lstm_cell = tf.contrib.rnn.DropoutWrapper(cell_fw, output_keep_prob=self.dropout_keep_prob)
             cell_bw = tf.nn.rnn_cell.BasicLSTMCell(num_units)
             bw_lstm_cell = tf.contrib.rnn.DropoutWrapper(cell_bw, output_keep_prob=self.dropout_keep_prob)
 
-            # 构建双向的RNN网络
-            # sequence_length：输入序列的有效长度
+            # Define Bi-RNN
             (a_outputs, a_output_states) = tf.nn.bidirectional_dynamic_rnn(fw_lstm_cell, bw_lstm_cell,
                                                                            inputs,
                                                                            sequence_length=seq_len,
                                                                            dtype=tf.float32)
 
-            # 拼接两个前向和后向Cell输出的tensor
+            # Concatenate F & B LSTM
             a_bar = tf.concat(a_outputs, axis=2)
             return a_bar
 

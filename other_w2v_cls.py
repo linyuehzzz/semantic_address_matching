@@ -19,12 +19,12 @@ class w2v_sim(object):
         self.embedding_dim = embedding_dim
         self.embedding_matrix = embedding_matrix
 
-        # 1. init placeholder
+        # 1. Init placeholder
         self.text_a = tf.placeholder(tf.int32, [None, self.seq_length], name='text_a')
         self.text_b = tf.placeholder(tf.int32, [None, self.seq_length], name='text_b')
 
         # 2. Embedding
-        self.vocab_matrix = tf.get_variable(name="vocab_matrix", shape=[self.vocabulary_size, self.embedding_dim],
+        self.vocab_matrix = tf.get_variable(name='vocab_matrix', shape=[self.vocabulary_size, self.embedding_dim],
                                             initializer=tf.constant_initializer(self.embedding_matrix), trainable=True)
         self.text_a_embed = tf.nn.embedding_lookup(self.vocab_matrix, self.text_a)
         self.text_b_embed = tf.nn.embedding_lookup(self.vocab_matrix, self.text_b)
@@ -45,21 +45,20 @@ class w2v_sim(object):
             yield a, b, t
 
     def run(self):
-        # 加载词典
+        # Load word embeddings
         vocab = []
         embed = []
         cnt = 0
-        fr = open("D:\Lydia\PycharmProjects\Deep learning for geocoding\model\w2v_crf\word2vec.bin", 'r', encoding='UTF-8')
+        fr = open(r'/model/w2v_crf/word2vec.bin', 'r', encoding='UTF-8')
         line = fr.readline().strip()
-        # print line
         word_dim = int(line.split(' ')[1])
-        vocab.append("unk")
+        vocab.append('unk')
         embed.append([0] * word_dim)
         for line in fr:
             row = line.strip().split(' ')
             vocab.append(row[0])
             embed.append(row[1:])
-        print("loaded word2vec")
+        print('Loaded word2vec!')
         fr.close()
         print(vocab[0], vocab[1], vocab[2])
         print(embed[0])
@@ -70,24 +69,24 @@ class w2v_sim(object):
         print(embedding_dim)
         embedding_matrix = np.asarray(embed)
 
-        # 读入数据
+        # Read test dataset
         texta_index = data_pre.readfile(
-            'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_code_a.txt')
+            '/data/dataset/test_code_a.txt')
         texta_index = pad_sequences(texta_index, maxLen, padding='post')
         print(texta_index[0])
         print(len(texta_index))
         textb_index = data_pre.readfile(
-            'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_code_b.txt')
+            'g/data/dataset/test_code_b.txt')
         textb_index = pad_sequences(textb_index, maxLen, padding='post')
         print(textb_index[0])
         print(len(textb_index))
-        tag = data_pre.readfile('D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test_lable.txt')
+        tag = data_pre.readfile('/data/dataset/test_lable.txt')
 
-        # 转化为矢量
+        # Convert text to vector
         y_true = []
         sim = []
         model = self.get_sim(len(texta_index[0]), vocab_size, embedding_dim, embedding_matrix)
-        with open("D:\Lydia\PycharmProjects\Deep learning for geocoding\data\other\crf_w2v_test.csv", "w",
+        with open(r'/data/other/crf_w2v_test.csv', 'w',
                   encoding='utf8') as f:
             with tf.Session() as sess:
                 tf.global_variables_initializer().run()

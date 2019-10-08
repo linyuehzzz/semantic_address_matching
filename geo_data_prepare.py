@@ -7,8 +7,7 @@ UNKNOWN = '<UNK>'
 PADDING = '<PAD>'
 
 class Data_Prepare(object):
-
-    # 读入文件（用词典序号表示单词）
+    # Read file
     def readfile(self, filename):
         text_index = []
         tag = []
@@ -18,19 +17,18 @@ class Data_Prepare(object):
                 text_index.append([int(i) for i in line])
         return text_index
 
-    # 获取停用词
+    # Get stopwords
     def get_stopwords(self):
         stopwords = []
-        with open("D:/Lydia/PycharmProjects/Deep learning for geocoding/data/Stopwords.txt", "r",
+        with open("/data/Stopwords.txt", "r",
                   encoding='utf8') as f:
             lines = f.readlines()
             for line in lines:
                 stopwords.append(line.strip())
         return stopwords
 
-    # 分词
+    # Tokenize
     def pre_processing(self, text):
-        # 删除（）里的内容
         stopwords = self.get_stopwords()
         words = jieba.cut(text)
         words_seg = []
@@ -39,7 +37,7 @@ class Data_Prepare(object):
                 words_seg.append(word)
         return words_seg
 
-    # 文字转换为词典中的序号
+    # Convert address element into index
     def sentence2Index(self, text, vocabDict):
         sList = []
         for word in text:

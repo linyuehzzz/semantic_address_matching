@@ -3,13 +3,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 import Levenshtein
 
-# Levenshtein距离
+# Levenshtein distance
 def edit_distance(s1, s2):
     return distance.levenshtein(s1, s2)
 
 def Levenshtein_test():
-    filename = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/other/Levenshtein_test.csv'
+    filename = '/data/dataset/test.txt'
+    output_file = '/data/other/Levenshtein_test.csv'
     with open(filename, 'r', encoding='UTF-8') as f:
         with open(output_file, 'w', encoding='utf-8') as filehandler2:
             for line in f.readlines():
@@ -23,8 +23,8 @@ def Levenshtein_test():
                 filehandler2.write(str(lable) + ',' + str(d) + '\n')
 
 def Levenshtein_train():
-    filename = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/other/Levenshtein_train.csv'
+    filename = '/data/dataset/train.txt'
+    output_file = '/data/other/Levenshtein_train.csv'
     with open(filename, 'r', encoding='UTF-8') as f:
         with open(output_file, 'w', encoding='utf-8') as filehandler2:
             for line in f.readlines():
@@ -37,27 +37,23 @@ def Levenshtein_train():
                 d = edit_distance(s1, s2)
                 filehandler2.write(lable + ',' + str(d) + '\n')
 
-# Jaccard相似度
+
+# Jaccard similarity coefficient 
 def Jaccard_similarity(s1, s2):
     def add_space(s):
         return ' '.join(list(s))
 
-    # 将字中间加入空格
     s1, s2 = add_space(s1), add_space(s2)
-    # 转化为TF矩阵
     cv = CountVectorizer(tokenizer=lambda s: s.split())
     corpus = [s1, s2]
     vectors = cv.fit_transform(corpus).toarray()
-    # 求交集
     numerator = np.sum(np.min(vectors, axis=0))
-    # 求并集
     denominator = np.sum(np.max(vectors, axis=0))
-    # 计算杰卡德系数
     return 1.0 * numerator / denominator
 
 def Jaccard_train():
-    filename = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/other/Jaccard_train.csv'
+    filename = '/data/dataset/train.txt'
+    output_file = '/data/other/Jaccard_train.csv'
     with open(filename, 'r', encoding='UTF-8') as f:
         with open(output_file, 'w', encoding='utf-8') as filehandler2:
             for line in f.readlines():
@@ -71,8 +67,8 @@ def Jaccard_train():
                 filehandler2.write(lable + ',' + str(s) + '\n')
 
 def Jaccard_test():
-    filename = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/other/Jaccard_test.csv'
+    filename = '/data/dataset/test.txt'
+    output_file = '/data/other/Jaccard_test.csv'
     with open(filename, 'r', encoding='UTF-8') as f:
         with open(output_file, 'w', encoding='utf-8') as filehandler2:
             for line in f.readlines():
@@ -85,13 +81,14 @@ def Jaccard_test():
                 s = Jaccard_similarity(s1, s2)
                 filehandler2.write(lable + ',' + str(s) + '\n')
 
-# Jaro距离
+
+# Jaro similarity
 def Jaro_distance(s1, s2):
     return Levenshtein.jaro(s1, s2)
 
 def Jaro_train():
-    filename = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/train.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/other/Jaro_train.csv'
+    filename = '/data/dataset/train.txt'
+    output_file = '/data/other/Jaro_train.csv'
     with open(filename, 'r', encoding='UTF-8') as f:
         with open(output_file, 'w', encoding='utf-8') as filehandler2:
             for line in f.readlines():
@@ -105,8 +102,8 @@ def Jaro_train():
                 filehandler2.write(lable + ',' + str(s) + '\n')
 
 def Jaro_test():
-    filename = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/dataset/test.txt'
-    output_file = 'D:/Lydia/PycharmProjects/Deep learning for geocoding/data/other/Jaro_test.csv'
+    filename = '/data/dataset/test.txt'
+    output_file = '/data/other/Jaro_test.csv'
     with open(filename, 'r', encoding='UTF-8') as f:
         with open(output_file, 'w', encoding='utf-8') as filehandler2:
             for line in f.readlines():
