@@ -2,6 +2,7 @@
 
 
 Codes in this repository is for the paper **A Deep Learning Architecture for Semantic Address Matching (Lin *et al.* 2019)**.
+
 Cite as **Lin, Yue, & Kang, Mengjun. (2019, October 8). yuelinnnnnnn/semantic_address_matching: Semantic address matching (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.3476673**
 
 Below is an overview of each file in this repository.
