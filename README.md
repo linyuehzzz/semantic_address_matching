@@ -5,6 +5,12 @@ Codes in this repository is for the paper **A Deep Learning Architecture for Sem
 
 Codes are cited as **Lin, Yue & Kang, Mengjun. (2019, October 8). yuelinnnnnnn/semantic_address_matching: Semantic address matching (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.3476673**
 
+Data are available at:
+
+  - *Shenzhen address corpus (part)*: http://doi.org/10.5281/zenodo.3477632
+  - *Labeled address dataset for semantic address matching*: http://doi.org/10.5281/zenodo.3477006
+
+
 Below is an overview of each file in this repository.
 
   - `geo_config.py` Hyperparameter settings for the ESIM
