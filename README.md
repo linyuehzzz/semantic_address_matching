@@ -1,7 +1,7 @@
 # A Deep Learning Architecture for Semantic Address Matching
 
 
-Codes in this repository is for the paper **A Deep Learning Architecture for Semantic Address Matching (Lin *et al.* 2019)**.
+Codes in this repository is for the paper **Yue Lin, Mengjun Kang, Yuyang Wu, Qingyun Du & Tao Liu (accepted) A deep learning architecture for semantic address matching, International Journal of Geographical Information Science.**.
 
 
 
