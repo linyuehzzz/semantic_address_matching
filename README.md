@@ -12,7 +12,7 @@ Codes are cited as **Lin, Yue & Kang, Mengjun. (2019, October 8). yuelinnnnnnn/s
 Data are available at:
 
   - *Shenzhen address corpus (part)*: http://doi.org/10.5281/zenodo.3477632
-  - *Labeled address dataset for semantic address matching*: http://doi.org/10.5281/zenodo.3477006
+  - *Labelled address dataset for semantic address matching*: http://doi.org/10.5281/zenodo.3477006
 
 
 
