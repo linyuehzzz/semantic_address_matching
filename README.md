@@ -1,21 +1,34 @@
 # A Deep Learning Architecture for Semantic Address Matching
 
 
-Codes in this repository are for our paper **Lin, Y., Kang, M., Wu, Y., Du, Q. and Liu, T. (2019) A deep learning architecture for semantic address matching, *International Journal of Geographical Information Science*, DOI: [10.1080/13658816.2019.1681431](http://doi.org/10.1080/13658816.2019.1681431)**
+Codes in this repository are for our paper **A deep learning architecture for semantic address matching**
 
 
+Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476673.svg)](https://doi.org/10.5281/zenodo.3476673)
+--------
+```
+@article{doi:10.1080/13658816.2019.1681431,
+author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
+title = {A deep learning architecture for semantic address matching},
+journal = {International Journal of Geographical Information Science},
+volume = {0},
+number = {0},
+pages = {1-18},
+year  = {2019},
+publisher = {Taylor & Francis},
+doi = {10.1080/13658816.2019.1681431},
+}
+```
 
-Codes are cited as **Lin, Yue & Kang, Mengjun. (2019, October 8). yuelinnnnnnn/semantic_address_matching: Semantic address matching (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.3476673**
-
-
-
+Data
+--------
 Data are available at:
 
-  - *Shenzhen address corpus (part)*: http://doi.org/10.5281/zenodo.3477632
-  - *Semantic address matching dataset*: http://doi.org/10.5281/zenodo.3477006
+  - *Shenzhen address corpus (part)* [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3477633.svg)](https://doi.org/10.5281/zenodo.3477633)
+  - *Semantic address matching dataset* [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3477007.svg)](https://doi.org/10.5281/zenodo.3477007)
 
-
-
+Details
+--------
 Below is an overview of each file in this repository.
 
   - `geo_config.py` Hyperparameter settings for the ESIM
