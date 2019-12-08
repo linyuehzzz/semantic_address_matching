@@ -1,7 +1,7 @@
 # A Deep Learning Architecture for Semantic Address Matching
 
 
-Codes in this repository are for our paper **A deep learning architecture for semantic address matching**
+Codes in this repository are for our paper **A Deep Learning Architecture for Semantic Address Matching**
 
 
 Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476673.svg)](https://doi.org/10.5281/zenodo.3476673)
