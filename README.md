@@ -44,7 +44,7 @@ Below is an overview of each file in this repository.
   - `geo_token.py` Tokenize with the Jieba library
   - `geo_train.py` Train the ESIM and evaluate its accuracy on the development set
   - `geo_word2vec.py` Train word vectors of address elements
-  - `other_CRF.py` Tokenize using CRF **[Comber and Arribas-Bel (2019)]** 
+  - `other_CRF.py` Tokenize using CRF **[Comber, S.; Arribas-Bel, D. (2019) “Machine learning innovations in address matching: A practical comparison of word2vec and CRFs”. Transactions in GIS, 23 (2): 334–348.]** 
   - `other_crf_w2v.py` Train word vectors of address elements (CRF tokenizer)
   - `other_string.py` String similarity-based address matching methods: measure the string relevance
   - `other_w2v_cls.py` Use word2vec embeddings directly for classification: calculat cosine similarity
