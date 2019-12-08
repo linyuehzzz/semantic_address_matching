@@ -7,7 +7,7 @@ Codes in this repository are for our 2019 IJGIS paper **A Deep Learning Architec
 Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476673.svg)](https://doi.org/10.5281/zenodo.3476673)
 --------
 ```
-@article{doi:10.1080/13658816.2019.1681431,
+@article{Lin+Kang+Wu+Du+Liu:2019,
 author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
 title = {A deep learning architecture for semantic address matching},
 journal = {International Journal of Geographical Information Science},
