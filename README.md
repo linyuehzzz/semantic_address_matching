@@ -8,15 +8,15 @@ Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476673.svg)](http
 --------
 ```
 @article{Lin+Kang+Wu+Du+Liu:2019,
-author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
-title = {A deep learning architecture for semantic address matching},
-journal = {International Journal of Geographical Information Science},
-volume = {0},
-number = {0},
-pages = {1-18},
-year  = {2019},
-publisher = {Taylor & Francis},
-doi = {10.1080/13658816.2019.1681431},
+  author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
+  title = {A deep learning architecture for semantic address matching},
+  journal = {International Journal of Geographical Information Science},
+  volume = {0},
+  number = {0},
+  pages = {1-18},
+  year  = {2019},
+  publisher = {Taylor & Francis},
+  doi = {10.1080/13658816.2019.1681431}
 }
 ```
 
