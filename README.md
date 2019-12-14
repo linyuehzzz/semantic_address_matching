@@ -4,7 +4,7 @@
 Codes in this repository are for our IJGIS paper **A Deep Learning Architecture for Semantic Address Matching**.
 
 
-Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476673.svg)](https://doi.org/10.5281/zenodo.3476673)
+Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476673.svg)](https://doi.org/10.5281/zenodo.3476661)
 --------
 ```
 @article{Lin+Kang+Wu+Du+Liu:2019,
