@@ -1,7 +1,7 @@
 # A Deep Learning Architecture for Semantic Address Matching
 
 
-Codes in this repository are for our IJGIS paper **A Deep Learning Architecture for Semantic Address Matching**.
+Codes in this repository are for our IJGIS paper [**A Deep Learning Architecture for Semantic Address Matching**](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1681431).
 
 
 Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476661.svg)](https://doi.org/10.5281/zenodo.3476661)
