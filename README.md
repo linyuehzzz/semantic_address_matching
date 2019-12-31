@@ -14,9 +14,9 @@ Data are available at:
 
 
 
-Citation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476661.svg)](https://doi.org/10.5281/zenodo.3476661)
+Citation
 --------
-Please cite the following reference if you use the codes.
+Please cite the following reference if you use the codes 😊.
 ```
 @article{Lin+Kang+Wu+Du+Liu:2019,
   author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
@@ -30,7 +30,7 @@ Please cite the following reference if you use the codes.
   doi = {10.1080/13658816.2019.1681431}
 }
 ```
-
+Release version of the codes can also be cited as [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476661.svg)](https://doi.org/10.5281/zenodo.3476661)
 
 
 Details
