@@ -4,8 +4,19 @@
 Codes in this repository are for our IJGIS paper [**A Deep Learning Architecture for Semantic Address Matching**](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1681431).
 
 
-Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476661.svg)](https://doi.org/10.5281/zenodo.3476661)
+
+Data
 --------
+Data are available at:
+
+  - Shenzhen address corpus (part) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3477633.svg)](https://doi.org/10.5281/zenodo.3477633)
+  - Semantic address matching dataset [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3477007.svg)](https://doi.org/10.5281/zenodo.3477007)
+
+
+
+Citation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476661.svg)](https://doi.org/10.5281/zenodo.3476661)
+--------
+Please cite the following reference if you use the codes.
 ```
 @article{Lin+Kang+Wu+Du+Liu:2019,
   author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
@@ -19,15 +30,6 @@ Citations [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3476661.svg)](http
   doi = {10.1080/13658816.2019.1681431}
 }
 ```
-
-
-
-Data
---------
-Data are available at:
-
-  - Shenzhen address corpus (part) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3477633.svg)](https://doi.org/10.5281/zenodo.3477633)
-  - Semantic address matching dataset [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3477007.svg)](https://doi.org/10.5281/zenodo.3477007)
 
 
 
