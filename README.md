@@ -18,7 +18,7 @@ Citation
 --------
 Please cite the following reference if you use the codes 😊.
 ```
-@article{Lin+Kang+Wu+Du+Liu:2019,
+@article{Lin+Kang+Wu+Du+Liu:2020,
   author = {Yue Lin and Mengjun Kang and Yuyang Wu and Qingyun Du and Tao Liu},
   title = {A deep learning architecture for semantic address matching},
   journal = {International Journal of Geographical Information Science},
